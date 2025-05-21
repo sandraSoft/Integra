@@ -1,0 +1,25 @@
+classDiagram
+    class Libro {
+        - titulo
+        + __init__(titulo)
+        + __eq__(other)
+        + __str__()
+    }
+
+    class Biblioteca {
+        - libros
+        + __init__()
+        + buscar_libro(titulo)
+        + adicionar_libro(titulo)
+        + cantidad_libros()
+    }
+
+    class ControlBiblioteca {
+        - biblioteca
+        + __init__(biblioteca)
+        + crear_libro(titulo)
+        + consultar_cantidad_libros()
+    }
+
+    Biblioteca "1" o-- "*" Libro : contiene
+    ControlBiblioteca "1" --> "1" Biblioteca : usa
