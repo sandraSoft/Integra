@@ -1,0 +1,41 @@
+classDiagram
+    class Disco {
+        - titulo: str
+        - duracion: float
+        + Disco(titulo: str, duracion: float)
+        + __str__() str
+    }
+
+    class ColeccionDiscos {
+        - discos: list
+        + ColeccionDiscos()
+        + adicionar_disco(disco: Disco)
+        + consultar_disco(titulo: str) Disco
+        + get_duracion_total() float
+        + get_discos() list
+    }
+
+    class ManejoArchivoBytes {
+        - coleccion: ColeccionDiscos
+        - ARCHIVO: str
+        + ManejoArchivoBytes(coleccion: ColeccionDiscos)
+        + escribir_datos()
+        + leer_datos()
+    }
+
+    class MenuDiscos {
+        - coleccion: ColeccionDiscos
+        - archivador: ManejoArchivoBytes
+        + MenuDiscos()
+        + menu()
+        + crear_disco()
+        + consultar_disco()
+        + mostrar_todos_discos()
+        + consultar_duracion_total()
+        + guardar_datos()
+    }
+
+    ColeccionDiscos --> "n" Disco
+    ManejoArchivoBytes --> "1" ColeccionDiscos
+    MenuDiscos --> "1" ColeccionDiscos
+    MenuDiscos --> "1" ManejoArchivoBytes
